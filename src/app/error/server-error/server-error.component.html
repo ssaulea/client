@@ -1,0 +1,17 @@
+<h4>Internal server error</h4>
+@if (error) 
+{
+    <h5 class="text-danger">Error: {{error.message}}</h5>
+    <p>Note: If you are seing this error then Angular is not to blame!</p>
+    <p>What to do next?</p>
+    <ol>
+        <li>Open chrome dev tools and check the network request in the nerwork tab</li>
+        <li>Examine the URL of the failing request</li>
+        <li>Reproduce the error in Postman - if you can reproduce the error then Angular is not to blame</li>
+    </ol>
+    <p class="font-weight-blod">Following is the stak trace - check the firsts 2 
+        lines this tells you exactly which line of code caused this problem!</p>
+    <code class="mt-5" style="background-color: whitesmoke;">
+        {{error.details}}
+    </code>
+}
