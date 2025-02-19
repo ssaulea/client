@@ -4,17 +4,19 @@ import { AccountService } from '../_services/account.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TitleCasePipe } from '@angular/common';
+import { MembersService } from '../_services/members.service';
+import { UserParams } from '../_models/UserParams';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [FormsModule, BsDropdownModule, RouterLink, RouterLinkActive, TitleCasePipe],
+  imports: [FormsModule, BsDropdownModule, RouterLink, RouterLinkActive],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
 export class NavComponent {
   accountService = inject(AccountService);
+  private memberService = inject(MembersService);
   private router = inject(Router);
   private toastr = inject(ToastrService);
   model: any = {};
@@ -29,6 +31,7 @@ export class NavComponent {
   }
 
   logout() {
+    this.memberService.paginatedResult.set(null);
     this.accountService.logout();
     this.router.navigateByUrl('/');
   }
