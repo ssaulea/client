@@ -24,6 +24,7 @@ export class NavComponent {
   login() {
     this.accountService.login(this.model).subscribe({
       next: _ => {
+        this.memberService.resetUserParams();
         this.router.navigateByUrl('/members');
       },
         error: error => this.toastr.error(error.error)
@@ -31,6 +32,8 @@ export class NavComponent {
   }
 
   logout() {
+    this.memberService.resetUserParams();
+    this.memberService.memberCache.clear();
     this.memberService.paginatedResult.set(null);
     this.accountService.logout();
     this.router.navigateByUrl('/');
