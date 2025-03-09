@@ -4,7 +4,7 @@ import {
   HttpParams,
   HttpResponse,
 } from '@angular/common/http';
-import { inject, Injectable, model, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Member } from '../_models/member';
 import { of, tap } from 'rxjs';
@@ -23,9 +23,11 @@ export class MembersService {
   baseUrl = environment.apiUrl;
   paginatedResult = signal<PaginatedResult<Member[]> | null>(null);
   memberCache = new Map();
-  userParams = signal<UserParams>(new UserParams(this.accountService.currentUser()));
+  user = this.accountService.currentUser();
+  userParams = signal<UserParams>(new UserParams(this.user));
 
   resetUserParams() {
+    console.log(this.user);
     this.userParams.set(new UserParams(this.accountService.currentUser()));
   }
 

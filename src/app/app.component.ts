@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
   accountservice = inject(AccountService);
 
   ngOnInit(): void {
+    console.log('app');
     this.setCurrentUser();
   }
 

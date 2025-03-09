@@ -9,6 +9,11 @@ export class UserParams {
     orderBy = 'lastActive';
 
     constructor(user: User | null) {
+        if (!user) {
+            const userString = localStorage.getItem('user');
+            if (userString)
+                user = JSON.parse(userString);
+        }
         this.gender = user?.gender === 'male' ? 'female' : 'male';
     }
 }
