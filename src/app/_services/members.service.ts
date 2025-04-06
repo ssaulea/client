@@ -27,7 +27,6 @@ export class MembersService {
   userParams = signal<UserParams>(new UserParams(this.user));
 
   resetUserParams() {
-    console.log(this.user);
     this.userParams.set(new UserParams(this.accountService.currentUser()));
   }
 
